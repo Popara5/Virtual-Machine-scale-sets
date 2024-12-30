@@ -1,0 +1,122 @@
+{
+    "apiVersion": "2024-07-01",
+    "id": "/subscriptions/c026ac07-ffac-4e08-b69c-9240e6d12833/resourceGroups/az104-rg8/providers/Microsoft.Compute/virtualMachineScaleSets/vmss1",
+    "name": "vmss1",
+    "type": "microsoft.compute/virtualmachinescalesets",
+    "sku": {
+        "name": "Standard_D2s_v3",
+        "tier": "Standard",
+        "capacity": 2
+    },
+    "location": "eastus",
+    "zones": [
+        "1",
+        "2",
+        "3"
+    ],
+    "properties": {
+        "singlePlacementGroup": false,
+        "orchestrationMode": "Uniform",
+        "upgradePolicy": {
+            "mode": "Manual"
+        },
+        "scaleInPolicy": {
+            "rules": [
+                "Default"
+            ],
+            "forceDeletion": false
+        },
+        "virtualMachineProfile": {
+            "osProfile": {
+                "computerNamePrefix": "vmss1tuax",
+                "adminUsername": "localadmin",
+                "windowsConfiguration": {
+                    "provisionVMAgent": true,
+                    "enableAutomaticUpdates": true
+                },
+                "secrets": [],
+                "allowExtensionOperations": true,
+                "requireGuestProvisionSignal": true
+            },
+            "storageProfile": {
+                "osDisk": {
+                    "osType": "Windows",
+                    "createOption": "FromImage",
+                    "caching": "ReadWrite",
+                    "managedDisk": {
+                        "storageAccountType": "Premium_LRS"
+                    },
+                    "diskSizeGB": 127
+                },
+                "imageReference": {
+                    "publisher": "MicrosoftWindowsServer",
+                    "offer": "WindowsServer",
+                    "sku": "2019-datacenter-gensecond",
+                    "version": "latest"
+                },
+                "diskControllerType": "SCSI"
+            },
+            "networkProfile": {
+                "networkInterfaceConfigurations": [
+                    {
+                        "name": "vmss-vnet-nic01",
+                        "properties": {
+                            "primary": true,
+                            "enableAcceleratedNetworking": true,
+                            "disableTcpStateTracking": false,
+                            "networkSecurityGroup": {
+                                "id": "/subscriptions/c026ac07-ffac-4e08-b69c-9240e6d12833/resourceGroups/az104-rg8/providers/Microsoft.Network/networkSecurityGroups/vmss1-nsg"
+                            },
+                            "dnsSettings": {
+                                "dnsServers": []
+                            },
+                            "enableIPForwarding": false,
+                            "ipConfigurations": [
+                                {
+                                    "name": "vmss-vnet-nic01-defaultIpConfiguration",
+                                    "properties": {
+                                        "publicIPAddressConfiguration": {
+                                            "name": "publicIp-vmss-vnet-nic01",
+                                            "properties": {
+                                                "idleTimeoutInMinutes": 15,
+                                                "ipTags": [],
+                                                "publicIPAddressVersion": "IPv4"
+                                            }
+                                        },
+                                        "primary": true,
+                                        "subnet": {
+                                            "id": "/subscriptions/c026ac07-ffac-4e08-b69c-9240e6d12833/resourceGroups/az104-rg8/providers/Microsoft.Network/virtualNetworks/vmss-vnet/subnets/subnet0"
+                                        },
+                                        "privateIPAddressVersion": "IPv4",
+                                        "loadBalancerBackendAddressPools": [
+                                            {
+                                                "id": "/subscriptions/c026ac07-ffac-4e08-b69c-9240e6d12833/resourceGroups/az104-rg8/providers/Microsoft.Network/loadBalancers/vmss-lb/backendAddressPools/bepool"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "diagnosticsProfile": {
+                "bootDiagnostics": {
+                    "enabled": true
+                }
+            },
+            "extensionProfile": {
+                "extensions": []
+            },
+            "timeCreated": "2024-12-30T17:44:12.746Z"
+        },
+        "provisioningState": "Succeeded",
+        "overprovision": false,
+        "doNotRunExtensionsOnOverprovisionedVMs": false,
+        "uniqueId": "62251002-c56b-424e-968d-3c4511e76b03",
+        "zoneBalance": false,
+        "platformFaultDomainCount": 1,
+        "timeCreated": "2024-12-30T17:44:12.746Z"
+    },
+    "etag": "\"1\""
+}
